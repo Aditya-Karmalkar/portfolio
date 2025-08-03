@@ -1,0 +1,172 @@
+/* General Layout and Card Styling */
+.contact-section {
+    position: relative;
+    padding: 80px 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #121212; /* Dark background for a modern look */
+    color: #f1f1f1; /* Light text color */
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 15px;
+}
+
+.contact-heading h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.contact-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch; /* Ensures cards are the same height */
+}
+
+.contact-form-card,
+.contact-info-card {
+    background: rgba(255, 255, 255, 0.05); /* Semi-transparent white for frosted glass effect */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    flex: 1;
+    min-width: 300px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Stronger shadow */
+    transition: all 0.3s ease-in-out;
+}
+
+.contact-form-card:hover,
+.contact-info-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.5);
+}
+
+.contact-form-title,
+.contact-info-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #cd5ff8; /* Your brand color */
+}
+
+.contact-form-description {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    color: #ccc;
+}
+
+/* Form and Input Styling */
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form .form-label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #f1f1f1;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.contact-form .form-control {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #f1f1f1;
+    padding: 12px 15px;
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+}
+
+.contact-form .form-control:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #cd5ff8;
+    box-shadow: 0 0 0 0.25rem rgba(205, 95, 248, 0.25);
+    outline: none;
+}
+
+.contact-form .form-control::placeholder {
+    color: #999;
+}
+
+/* Button Styling */
+.contact-submit-btn {
+    width: 100%;
+    padding: 15px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    background-color: #cd5ff8; /* Your brand color */
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-submit-btn:hover {
+    background-color: #a94dd1; /* A slightly darker shade on hover */
+    transform: translateY(-2px);
+}
+
+.contact-submit-btn i {
+    margin-right: 10px;
+}
+
+/* Info Card Styling */
+.contact-info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.contact-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contact-info-item h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #cd5ff8;
+}
+
+.contact-info-item p {
+    margin-bottom: 0;
+    color: #ccc;
+    font-size: 1rem;
+}
+
+.contact-info-item small {
+    color: #888;
+    font-size: 0.8rem;
+}
+
+.contact-info-item a {
+    color: #f1f1f1;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.contact-info-item a:hover {
+    color: #cd5ff8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .contact-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}

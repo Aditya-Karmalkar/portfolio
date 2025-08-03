@@ -1,0 +1,200 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Remove all existing .tech-icons and .tech-tooltip rules and replace with: */
+
+.tech-icons {
+  font-size: 3.5em !important;
+  margin: 15px !important;
+  padding: 15px !important;
+  opacity: 0.93 !important;
+  border: 1.7px solid rgba(200, 137, 230, 0.637) !important;
+  border-radius: 15px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+  position: relative !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  min-height: 100px !important;
+  min-width: 100px !important;
+  cursor: pointer;
+  transition: all 0.4s ease !important;
+}
+
+.tech-tooltip {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #00FFFF !important;
+  color: white !important;
+  font-size: 0.5em !important;  
+  font-weight: 500 !important;
+  text-align: center !important;
+  border-radius: 15px !important;
+  padding: 10px !important;     
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+  pointer-events: none !important;
+  z-index: 10 !important;
+  line-height: 1.2 !important;  /* Adjusted from 1.3 */
+  word-break: break-word !important;
+  white-space: normal !important;
+  overflow: hidden !important;   /* Added to contain text */
+  box-sizing: border-box !important; /* Ensure padding is included in width/height */
+}
+
+/* Add this media query for better mobile display */
+@media (max-width: 768px) {
+  .tech-tooltip {
+    font-size: 0.6em !important;
+    padding: 5px !important;
+  }
+}
+
+.tech-icons:hover .tech-tooltip {
+  opacity: 1 !important;
+}
+
+/* .tech-icons {
+  font-size: 4.5em !important;
+  margin: 15px !important;
+  padding: 10px !important;
+  opacity: 0.93 !important;
+  border: 1.7px solid rgba(200, 137, 230, 0.637) !important;
+  vertical-align: middle !important;
+  text-align: center !important;
+  border-radius: 15px !important;
+  display: table !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+  overflow: visible !important;
+  transition: all 0.4s ease 0s !important;
+  position: relative !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  min-height: 100px !important;
+} */
+
+.tech-icons:hover {
+  transform: translateY(-5px) scale(1.05) !important;
+  box-shadow: 0 12px 40px rgba(205, 95, 248, 0.2) !important;
+  border-color: rgba(205, 95, 248, 0.5) !important;
+  background: rgba(205, 95, 248, 0.1) !important;
+}
+
+.tech-icons::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(135deg, rgba(205, 95, 248, 0.1), rgba(102, 126, 234, 0.1)) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+  border-radius: 15px !important;
+}
+
+.tech-icons:hover::before {
+  opacity: 1 !important;
+}
+
+@media (max-width: 768px) {
+  .tech-tooltip {
+    font-size: 0.65em !important;
+    padding: 3px 8px !important;
+    margin-top: 6px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .tech-tooltip {
+    font-size: 0.7em !important;
+    padding: 4px 8px !important;
+    bottom: -30px !important;
+  }
+}
+
+.tech-icons {
+  font-size: 4.5em !important;
+  margin: 15px !important;
+  padding: 10px !important;
+  opacity: 0.93 !important;
+  border: 1.7px solid rgba(200, 137, 230, 0.637) !important;
+  vertical-align: middle !important;
+  text-align: center !important;
+  border-radius: 15px !important;
+  display: table !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+  overflow: hidden !important;
+  transition: all 0.4s ease 0s !important;
+  position: relative !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.tech-icons:hover {
+  transform: translateY(-5px) scale(1.05) !important;
+  box-shadow: 0 12px 40px rgba(205, 95, 248, 0.2) !important;
+  border-color: rgba(205, 95, 248, 0.5) !important;
+  background: rgba(205, 95, 248, 0.1) !important;
+}
+
+.tech-icons::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(135deg, rgba(205, 95, 248, 0.1), rgba(102, 126, 234, 0.1)) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+  border-radius: 15px !important;
+}
+
+.tech-icons:hover::before {
+  opacity: 1 !important;
+}

@@ -1,0 +1,261 @@
+/* Enhanced Projects Styles with Hover Effects */
+.project-section {
+  position: relative;
+  padding: 100px 0 30px 0;
+  background-image: linear-gradient(to bottom, #000000, #130f40);
+}
+
+.project-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.project-heading {
+  color: white;
+  font-size: 2.5em;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.project-card-enhanced {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  transition: all 0.3s ease !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  transform: translateZ(0) !important;
+}
+
+.project-card-enhanced:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 45px rgba(31, 38, 135, 0.5);
+}
+
+.project-image-container {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.project-image-enhanced {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-card-enhanced:hover .project-image-enhanced {
+  transform: scale(1.1);
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(205, 95, 248, 0.9), rgba(75, 0, 130, 0.9));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.project-card-enhanced:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-overlay-content {
+  text-align: center;
+  color: white;
+  padding: 20px;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.project-card-enhanced:hover .project-overlay-content {
+  transform: translateY(0);
+}
+
+.project-overlay-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.project-overlay-description {
+  font-size: 0.9em;
+  margin-bottom: 20px;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+.project-overlay-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.project-overlay-btn {
+  padding: 8px 16px;
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 0.85em;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.project-overlay-btn:hover {
+  background: white;
+  color: #cd5ff8;
+  transform: translateY(-2px);
+}
+
+.demo-btn {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.project-content-enhanced {
+  padding: 20px;
+}
+
+.project-title-enhanced {
+  color: white;
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.project-description-enhanced {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9em;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.project-links-enhanced {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+}
+
+.project-links-enhanced a {
+  color: #cd5ff8;
+  font-size: 1.2em;
+  transition: color 0.3s ease;
+}
+
+.project-links-enhanced a:hover {
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .project-heading {
+    font-size: 2em;
+  }
+  
+  .project-overlay-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .project-overlay-btn {
+    width: 100%;
+    max-width: 200px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-section {
+    padding: 80px 0 20px 0;
+  }
+  
+  .project-container {
+    padding: 0 15px;
+  }
+  
+  .project-heading {
+    font-size: 1.8em;
+  }
+  
+  .project-card-enhanced {
+    margin: 0 10px;
+  }
+}
+
+/* Animation for staggered loading */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-card-enhanced {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Glass morphism effect enhancement */
+.project-card-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(205, 95, 248, 0.1) 50%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.project-card-enhanced:hover::before {
+  opacity: 1;
+}
+
+/* Scroll animations */
+@media (prefers-reduced-motion: no-preference) {
+  .project-card-enhanced {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+}

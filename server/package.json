@@ -1,0 +1,30 @@
+{
+  "name": "portfolio-email-service",
+  "version": "1.0.0",
+  "description": "Email service for portfolio contact form using Gmail SMTP",
+  "main": "emailService.js",
+  "scripts": {
+    "start": "node emailService.js",
+    "dev": "nodemon emailService.js",
+    "build": "npm install"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.21.2",
+    "nodemailer": "^6.10.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "email",
+    "contact",
+    "portfolio",
+    "gmail",
+    "smtp"
+  ],
+  "author": "Aditya Karmalkar",
+  "license": "MIT"
+}
