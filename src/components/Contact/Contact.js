@@ -95,7 +95,9 @@ const Contact = () => {
                                     Send a Message
                                 </h2>
                                 <p className="contact-form-description">
-                                    Feel free to reach out with any questions or opportunities. I'm always open to new opportunities and collaborations.
+                                    Feel free to reach out with any questions or opportunities. I'm always open to new opportunities and collaborations.<br />
+                                    For Contact Visit My other portfolio at <br />
+                                    <a href="https://adityakarmalkar.netlify.app" target="_blank" rel="noopener noreferrer" style={{ color: '#6c63ff', textDecoration: 'underline' }}>adityakarmalkar.netlify.app</a>.
                                 </p>
 
                                 <div className="contact-info-item"
