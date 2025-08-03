@@ -1,53 +1,73 @@
-const { Resend } = require('resend');
-require('dotenv').config();
+import emailjs from 'emailjs-com';
 
-// HTML email template
-const generateEmailTemplate = (name, email, message) => `
-  <div style="font-family: Arial, sans-serif; color: #333; padding: 20px; background-color: #f4f4f4;">
-    <div style="max-width: 600px; margin: auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
-      <h2 style="color: #6c63ff;">New Message From Portfolio Contact Form</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Message:</strong></p>
-      <blockquote style="border-left: 4px solid #6c63ff; padding-left: 10px; margin-left: 0;">
-        ${message}
-      </blockquote>
-      <p style="font-size: 12px; color: #888;">This message was sent from your portfolio contact form.</p>
-    </div>
-  </div>
-`;
+// EmailJS configuration - these will be set in your environment variables
+const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_123456789';
+const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'template_123456789';
+const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'user_123456789';
 
-async function sendEmail({ name, email, message }) {
-    try {
-        console.log('Initializing Resend client...');
-        
-        const resend = new Resend(process.env.RESEND_API_KEY);
-        
-        console.log('Sending email via Resend...');
+// Initialize EmailJS
+emailjs.init(EMAILJS_PUBLIC_KEY);
 
-        const { data, error } = await resend.emails.send({
-            from: process.env.FROM_EMAIL || 'onboarding@resend.dev',
-            to: [process.env.TO_EMAIL || process.env.FROM_EMAIL],
-            replyTo: email,
-            subject: `New message from ${name}`,
-            text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
-            html: generateEmailTemplate(name, email, message)
-        });
+/**
+ * Send email directly to inbox using EmailJS
+ * This works client-side and is perfect for Vercel deployments
+ * @param {Object} emailData - Contains name, email, and message
+ * @returns {Promise} - EmailJS send promise
+ */
+export const sendEmailDirect = async ({ name, email, message }) => {
+  try {
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      message: message,
+      to_email: 'adityanv.karmalkar@gmail.com', // Your direct inbox
+      reply_to: email,
+    };
 
-        if (error) {
-            console.error('Resend API error:', error);
-            throw new Error(error.message);
-        }
+    const response = await emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      templateParams
+    );
 
-        console.log('Email sent successfully:', data);
-        return { success: true, messageId: data.id };
-    } catch (error) {
-        console.error('Email sending failed:', {
-            error: error.message,
-            stack: error.stack
-        });
-        throw new Error(`Failed to send email: ${error.message}`);
-    }
-}
+    console.log('Email sent successfully:', response);
+    return {
+      success: true,
+      message: 'Email sent successfully!',
+      data: response
+    };
+  } catch (error) {
+    console.error('Email sending failed:', error);
+    throw new Error(`Failed to send email: ${error.text || error.message}`);
+  }
+};
 
-module.exports = { sendEmail };
+/**
+ * Alternative method using EmailJS with more detailed configuration
+ */
+export const sendEmailAdvanced = async ({ name, email, message }) => {
+  try {
+    const serviceID = EMAILJS_SERVICE_ID;
+    const templateID = EMAILJS_TEMPLATE_ID;
+    
+    const templateParams = {
+      to_name: 'Aditya',
+      from_name: name,
+      from_email: email,
+      message: message,
+      subject: `New message from ${name} via Portfolio`,
+      reply_to: email,
+    };
+
+    const response = await emailjs.send(serviceID, templateID, templateParams);
+    
+    return {
+      success: true,
+      messageId: response.text,
+      message: 'Email sent successfully to your inbox!'
+    };
+  } catch (error) {
+    console.error('EmailJS error:', error);
+    throw new Error(`Email sending failed: ${error.text || error.message}`);
+  }
+};
