@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Contact.css';
-import { Container, Row, Col } from 'react-bootstrap';
 import Particle from '../Particle';
 import contact from "../../Assets/contact.png";
 
@@ -42,39 +41,38 @@ const Contact = () => {
         }
 
         try {
-            // Send email via Express server using Gmail passkey
-            const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-            const response = await fetch(`${apiUrl}/api/send-email`, {
+            // Send email via Google Apps Script using Gmail app password
+            const gasUrl = process.env.REACT_APP_GAS_WEB_APP_URL || 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+            
+            const payload = {
+                name: formData.name,
+                email: formData.email,
+                message: formData.message,
+                to_email: 'adityanv.karmalkar@gmail.com'
+            };
+
+            const response = await fetch(gasUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    name: formData.name,
-                    email: formData.email,
-                    message: formData.message
-                })
+                body: JSON.stringify(payload)
             });
 
             const result = await response.json();
-
+            
             if (result.success) {
-                setSubmitMessage('Message sent successfully! I will get back to you soon.');
+                setSubmitMessage('Message sent successfully to your Gmail inbox! I\'ll get back to you soon.');
                 setFormData({ name: '', email: '', message: '' });
+                console.log('Email sent via Google Apps Script:', result);
             } else {
-                setSubmitMessage(`Error: ${result.message || 'Failed to send message'}`);
+                setSubmitMessage(`Error: ${result.error || 'Failed to send message'}`);
             }
-
-            // Clear message after 5 seconds
-            setTimeout(() => setSubmitMessage(''), 5000);
 
         } catch (error) {
             console.error('Email sending failed:', error);
             const errorMessage = error.message || 'Unable to send email';
             setSubmitMessage(`Error: ${errorMessage}. Please try again.`);
-
-            // Clear message after 5 seconds
-            setTimeout(() => setSubmitMessage(''), 5000);
         } finally {
             setIsSubmitting(false);
         }
