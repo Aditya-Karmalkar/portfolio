@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 require('dotenv').config();
 
 // HTML email template
@@ -19,43 +19,32 @@ const generateEmailTemplate = (name, email, message) => `
 
 async function sendEmail({ name, email, message }) {
     try {
-        console.log('Creating transporter with Gmail SMTP...');
+        console.log('Initializing Resend client...');
         
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: process.env.GMAIL_USER,
-                pass: process.env.GMAIL_APP_PASSWORD
-            },
-            tls: {
-                rejectUnauthorized: false // Only for development/testing
-            }
-        });
+        const resend = new Resend(process.env.RESEND_API_KEY);
+        
+        console.log('Sending email via Resend...');
 
-        console.log('Sending email with options:', { 
-            from: process.env.GMAIL_USER,
-            to: process.env.GMAIL_USER,
-            subject: `New message from ${name}`
-        });
-
-        const mailOptions = {
-            from: `"Portfolio Contact" <${process.env.GMAIL_USER}>`,
-            to: process.env.GMAIL_USER,
+        const { data, error } = await resend.emails.send({
+            from: process.env.FROM_EMAIL || 'onboarding@resend.dev',
+            to: [process.env.TO_EMAIL || process.env.FROM_EMAIL],
             replyTo: email,
             subject: `New message from ${name}`,
             text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
             html: generateEmailTemplate(name, email, message)
-        };
+        });
 
-        const info = await transporter.sendMail(mailOptions);
-        console.log('Email sent successfully:', info.messageId);
-        return { success: true, messageId: info.messageId };
+        if (error) {
+            console.error('Resend API error:', error);
+            throw new Error(error.message);
+        }
+
+        console.log('Email sent successfully:', data);
+        return { success: true, messageId: data.id };
     } catch (error) {
         console.error('Email sending failed:', {
             error: error.message,
-            stack: error.stack,
-            code: error.code,
-            response: error.response
+            stack: error.stack
         });
         throw new Error(`Failed to send email: ${error.message}`);
     }
